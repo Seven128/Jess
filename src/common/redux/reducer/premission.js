@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const premission = createSlice({
     name: 'permission',
     initialState: {
-        data: {}
+        data: {a:1}
     },
     reducers: {
       fetchSuccess(state, action) {

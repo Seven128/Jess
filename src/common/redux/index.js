@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { fetchMiddleware, historyRouteMiddleware } from './middleware';
 
 import { premission } from './reducer';
 
@@ -6,6 +7,8 @@ const store = configureStore({
     reducer: {
         premission
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+    middleware: (getDefaultMiddleware) => [fetchMiddleware, historyRouteMiddleware],
     devTools: process.env.NODE_ENV !== 'production',
 })
+
+export default store;
