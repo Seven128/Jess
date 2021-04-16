@@ -18,10 +18,9 @@ export const fetchMiddleware = (_storeAPI) => (next) => async (action) => {
     
     let response;
     await axios(requestConfig).then((res) => {
-        response = res;
+        response = res.data;
     })
     .catch((e) => {
-        console.log(e, )
         next({
             type: `fetch/Failure`,
             payload: {
@@ -34,6 +33,7 @@ export const fetchMiddleware = (_storeAPI) => (next) => async (action) => {
     });
 
     if (response) {
+        console.log(response)
         if (response.code === 200) {
             next({
                 type: `fetch/fetchSuccess`,
@@ -59,5 +59,4 @@ export const fetchMiddleware = (_storeAPI) => (next) => async (action) => {
         }
     }
     
-    console.log(action, action)
 }

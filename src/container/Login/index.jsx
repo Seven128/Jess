@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Toast, message } from 'antd';
 import { useFetch } from '@common/hooks';
-import { TestAPI } from '@constanst';
+import { TestAPI, FetchState } from '@constanst';
 import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 
 const layout = {
@@ -34,6 +34,16 @@ export default function Login() {
             payload: {b:1}
         });
     }, [])
+
+    useEffect(() => {
+        if(loginFetchState.fetchState === FetchState.Success) {
+
+            message.success('登录成功！', 1.5);
+        }
+        if(loginFetchState.fetchState === FetchState.Failure) {
+            message.success('登录失败！', 1.5);
+        }
+    }, [loginFetchState])
 
 
     const onFinish = (values) => {
@@ -88,7 +98,7 @@ export default function Login() {
         </Form.Item>
 
         <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" loading={loginFetchState === FetchState.Loading}>
             Submit
         </Button>
         </Form.Item>

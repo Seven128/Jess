@@ -155,6 +155,5 @@
     "presets": [
       "react-app"
     ]
-  },
-  "proxy": "https://siwen.com/"
+  }
 }

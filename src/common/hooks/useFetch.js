@@ -1,16 +1,20 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import md5 from 'blueimp-md5';
 import { createFetchAction } from '@utils';
 import { FetchState } from '@constanst';
 import { useDispatch, shallowEqual, useSelector } from 'react-redux';
 
+import "antd/dist/antd.css";
+
 export function useFetch(options) {
-    let requestId = md5(new Date);
+    const requestIdRef = useRef(md5(new Date));
+    const requestId = requestIdRef.current;
     const { name = '', ...option } = options;
     console.log(requestId)
     const dispatch = useDispatch();
 
-    const fetchState = useSelector(state => state.fetch, shallowEqual);
+    const fetchState = useSelector(state => state.fetch[requestId] || {}, shallowEqual);
+    console.log(fetchState)
 
     useEffect(() => {
         dispatch({
@@ -38,7 +42,7 @@ export function useFetch(options) {
     )
 
     function resetRequestId() {
-        requestId = md5(new Date);
+        requestIdRef.current = md5(new Date);
     }
 
     return [fetchState, makeRequest, resetRequestId]
