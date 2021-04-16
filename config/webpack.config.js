@@ -159,6 +159,11 @@ module.exports = function (webpackEnv) {
   };
 
   return {
+    devServer: {
+      proxy: {
+          'http://siwen.cn': 'http://localhost:3000'
+      }
+    },
     mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
     // Stop compilation early in production
     bail: isEnvProduction,
