@@ -3,6 +3,7 @@ import { Form, Input, Button, Toast, message } from 'antd';
 import { useFetch } from '@common/hooks';
 import { TestAPI, FetchState } from '@constanst';
 import { useSelector, shallowEqual, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 
 const layout = {
     labelCol: {
@@ -22,12 +23,14 @@ const layout = {
 export default function Login() {
     const { data } = useSelector(state => state.premission, shallowEqual);
     const dispatch = useDispatch();
+    const history = useHistory();
     const [loginFetchState, makeLoginRequest, resetLoginFetch] = useFetch({
         name: 'premission',
         url: TestAPI.Login,
         method: 'post'
     });
     useEffect(() => {
+        history.push('/')
         dispatch({
             type: 'permission/fetchSuccess',
             payload: {b:1}

@@ -8,6 +8,9 @@ import { premission, fetch } from './reducer';
 export const history = createBrowserHistory();
 
 const store = configureStore({
+    preloadedState: {
+        router: {}
+    },
     reducer: {
         premission,
         fetch,
