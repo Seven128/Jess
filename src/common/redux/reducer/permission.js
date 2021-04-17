@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const premission = createSlice({
+export const permission = createSlice({
     name: 'permission',
     initialState: {
         data: {a:1}
@@ -8,6 +8,7 @@ export const premission = createSlice({
     reducers: {
       fetchSuccess(state, action) {
         const { payload } = action;
+        window.localStorage.set('JessTk', payload.token)
         state.data = payload;
       },
     },

@@ -57,7 +57,9 @@ export const fetchMiddleware = (_storeAPI) => (next) => async (action) => {
                     data: response.data,
                 }
             })
+            console.log(324234,name)
             if (name) {
+                console.log(787)
                 next({
                     type: `${name}/fetchSuccess`,
                     payload: response.data

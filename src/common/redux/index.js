@@ -3,7 +3,7 @@ import { fetchMiddleware, historyRouteMiddleware } from './middleware';
 import { connectRouter } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 
-import { premission, fetch } from './reducer';
+import { permission, fetch } from './reducer';
 
 export const history = createBrowserHistory();
 
@@ -12,7 +12,7 @@ const store = configureStore({
         router: {}
     },
     reducer: {
-        premission,
+        permission,
         fetch,
         router: connectRouter(history)
     },

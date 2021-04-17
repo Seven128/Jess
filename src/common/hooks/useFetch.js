@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react';
 import md5 from 'blueimp-md5';
-import { createFetchAction } from '@utils';
 import { FetchState } from '@constanst';
 import { useDispatch, shallowEqual, useSelector } from 'react-redux';
 
@@ -10,7 +9,7 @@ export function useFetch(options) {
     const requestIdRef = useRef(md5(new Date));
     const requestId = requestIdRef.current;
     const { name = '', ...option } = options;
-    console.log(requestId)
+    console.log(requestId, 555, name)
     const dispatch = useDispatch();
 
     const fetchState = useSelector(state => state.fetch[requestId] || {}, shallowEqual);
@@ -31,11 +30,13 @@ export function useFetch(options) {
         (extraOption) => {
             const requestConfig = Object.assign({}, option, extraOption);
 
-            const action = createFetchAction({
-                requestId,
-                requestConfig,
-                name
-            });
+            const action = {
+                fetchInfo: {
+                    requestId,
+                    requestConfig,
+                    name
+                }
+            };
             dispatch(action);
         },
         [requestId],

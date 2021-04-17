@@ -21,11 +21,11 @@ const layout = {
   };
 
 export default function Login() {
-    const { data } = useSelector(state => state.premission, shallowEqual);
+    const { data } = useSelector(state => state.permission, shallowEqual);
     const dispatch = useDispatch();
     const history = useHistory();
     const [loginFetchState, makeLoginRequest, resetLoginFetch] = useFetch({
-        name: 'premission',
+        name: 'permission',
         url: TestAPI.Login,
         method: 'post'
     });
