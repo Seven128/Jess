@@ -1,10 +1,13 @@
-export const API = {
+const ProAPI = {
 
 }
 
-export const TestAPI = {
-    Login: 'https://diversion.server.topviewclub.cn/api/user/login'
+const DevAPI = {
+    Login: 'https://diversion.server.topviewclub.cn/api/user/login',
+    GetInfo: 'https://diversion.server.topviewclub.cn/api/student/queryStudentInfo'
 }
+
+export const API = process.env.NODE_ENV === 'development' ? DevAPI : ProAPI;
 
 export const FetchState = {
     Init: 0,

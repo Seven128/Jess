@@ -1,22 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { fetchMiddleware, historyRouteMiddleware } from './middleware';
-import { connectRouter } from 'connected-react-router';
-import { createBrowserHistory } from 'history';
-
-import { permission, fetch } from './reducer';
-
-export const history = createBrowserHistory();
+import { fetchMiddleware } from './middleware';
+import { permission, fetch, info } from './reducer';
 
 const store = configureStore({
-    preloadedState: {
-        router: {}
-    },
     reducer: {
         permission,
         fetch,
-        router: connectRouter(history)
+        info,
     },
-    middleware: (getDefaultMiddleware) => [fetchMiddleware, historyRouteMiddleware],
+    middleware: (getDefaultMiddleware) => [fetchMiddleware],
     devTools: process.env.NODE_ENV !== 'production',
 })
 

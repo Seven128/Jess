@@ -1,6 +1,6 @@
 import axios from 'axios';
 import md5 from 'blueimp-md5';
-import { TestAPI } from '@constanst';
+import { API } from '@constanst';
 
 const requestMap = new Map();
 
@@ -10,18 +10,13 @@ export const fetchMiddleware = (_storeAPI) => (next) => async (action) => {
         return next(action);
     }
     const { requestConfig, requestId, name } = action.fetchInfo;
-    
+    console.log(45)
     next({
         type: `fetch/fetchLoading`,
         payload: {
             requestId,
         }
     })
-    
-    // 非登录接口判断是否有token
-    if(requestConfig.url !== TestAPI.Login && !localStorage.getItem('JessTk')) {
-        return next('/')
-    } 
     
     let request,response;
     // 如果是相同的请求那么就不重复发

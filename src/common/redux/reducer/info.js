@@ -1,14 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const permission = createSlice({
-    name: 'permission',
+export const info = createSlice({
+    name: 'info',
     initialState: {
-        data: {a:1}
+        data: {}
     },
     reducers: {
       fetchSuccess(state, action) {
         const { payload } = action;
-        window.localStorage.setItem('JessTk', payload.token)
         state.data = payload;
       },
     },

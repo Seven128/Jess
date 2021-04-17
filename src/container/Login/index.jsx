@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Form, Input, Button, Toast, message } from 'antd';
 import { useFetch } from '@common/hooks';
-import { TestAPI, FetchState } from '@constanst';
+import { API, FetchState } from '@constanst';
 import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 
@@ -26,20 +26,16 @@ export default function Login() {
     const history = useHistory();
     const [loginFetchState, makeLoginRequest, resetLoginFetch] = useFetch({
         name: 'permission',
-        url: TestAPI.Login,
+        url: API.Login,
         method: 'post'
     });
     useEffect(() => {
-        history.push('/')
-        dispatch({
-            type: 'permission/fetchSuccess',
-            payload: {b:1}
-        });
+ 
     }, [])
 
     useEffect(() => {
         if(loginFetchState.fetchState === FetchState.Success) {
-            dispatch('/confirmInfo');
+            history.push('/confirmInfo');
             message.success('登录成功！', 1.5);
 
         }
