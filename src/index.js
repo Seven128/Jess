@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import store from './common/redux';
-import { Provider } from 'react-redux';
+import { Provider, ReactReduxContext } from 'react-redux';
 import Router from './router';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <Router />
+    <Provider store={store} context={ReactReduxContext}>
+      <Router context={ReactReduxContext}/>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -1,10 +1,10 @@
-import { history } from "@src/router";
+import { routerMiddleware, push } from 'connected-react-router';
+import { history } from '../index';
 
-export const historyRouteMiddleware = (_storeAPI) => (next) => async (action) => {
-    console.log(action)
+export const historyRouteMiddleware = (storeAPI) => (next) => (action) => {
+    const { getState } = storeAPI;
     if (typeof action === 'string') {
-        history.push(action);
-    } else {
-        next(action)
+        return routerMiddleware(history)(getState())(next)(push(action))
     }
+    next(action)
 }

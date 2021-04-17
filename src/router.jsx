@@ -1,23 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
-    BrowserRouter as Router,
-    Route,
+    Route, Redirect,
   } from "react-router-dom";
+import { ConnectedRouter } from 'connected-react-router'
 import Login from '@container/Login';
+import ConfirmInfo from '@container/ConfirmInfo';
+import { history } from '@common/redux'
 
-import { createBrowserHistory } from "history";
+export default function RouterComponent(props) {
+  const { context } = props;
 
-export const history = createBrowserHistory();
-
-export default function RouterComponent() {
-    return (
-        <Router history={history}>
-          <Route exact path="/">
-            <Login />
-          </Route>
-          <Route exact path="/score">
-            34534
-          </Route>
-        </Router>
-    )
+  return (
+      <ConnectedRouter history={history} context={context}>
+        <Route exact path="/">
+          <Login />
+        </Route>
+        <Route path="/confirmInfo">
+          <ConfirmInfo />
+        </Route>
+      </ConnectedRouter>
+  )
 }

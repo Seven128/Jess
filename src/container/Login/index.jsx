@@ -23,12 +23,11 @@ export default function Login() {
     const { data } = useSelector(state => state.premission, shallowEqual);
     const dispatch = useDispatch();
     const [loginFetchState, makeLoginRequest, resetLoginFetch] = useFetch({
+        name: 'premission',
         url: TestAPI.Login,
         method: 'post'
     });
     useEffect(() => {
-        // makeLoginRequest({
-        // })
         dispatch({
             type: 'permission/fetchSuccess',
             payload: {b:1}
@@ -37,8 +36,9 @@ export default function Login() {
 
     useEffect(() => {
         if(loginFetchState.fetchState === FetchState.Success) {
-
+            dispatch('/confirmInfo');
             message.success('登录成功！', 1.5);
+
         }
         if(loginFetchState.fetchState === FetchState.Failure) {
             message.success('登录失败！', 1.5);

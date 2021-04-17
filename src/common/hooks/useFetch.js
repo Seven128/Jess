@@ -28,7 +28,7 @@ export function useFetch(options) {
     }, [requestId])
 
     const makeRequest = useCallback(
-        async (extraOption) => {
+        (extraOption) => {
             const requestConfig = Object.assign({}, option, extraOption);
 
             const action = createFetchAction({
@@ -36,7 +36,7 @@ export function useFetch(options) {
                 requestConfig,
                 name
             });
-            await dispatch(action);
+            dispatch(action);
         },
         [requestId],
     )
