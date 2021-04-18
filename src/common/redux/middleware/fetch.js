@@ -1,6 +1,5 @@
 import axios from 'axios';
 import md5 from 'blueimp-md5';
-import { API } from '@constanst';
 
 const requestMap = new Map();
 

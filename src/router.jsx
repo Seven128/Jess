@@ -5,6 +5,7 @@ import {
   } from "react-router-dom";
 import Login from '@container/Login';
 import ConfirmInfo from '@container/ConfirmInfo';
+import Admin from '@container/Admin';
 
 export default function RouterComponent(props) {
 
@@ -15,6 +16,9 @@ export default function RouterComponent(props) {
         </Route>
         <Route path="/confirmInfo">
           <ConfirmInfo />
+        </Route>
+        <Route path="/admin">
+          <Admin />
         </Route>
       </Router>
   )

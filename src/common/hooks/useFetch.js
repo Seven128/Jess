@@ -44,6 +44,7 @@ export function useFetch(options) {
                     }
                 }
             } 
+            
             const action = {
                 fetchInfo: {
                     requestId,
